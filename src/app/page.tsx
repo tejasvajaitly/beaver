@@ -1,3 +1,5 @@
+import { db } from "~/server/db";
+
 const mockUrls = [
   "https://utfs.io/f/403691a6-afd5-4bb1-a09c-81e6bfd12fcf-485ft9.jpg",
   "https://utfs.io/f/88092a5d-e86c-48e1-af4b-44472c11c8e6-1vhs6q.jpg",
@@ -12,13 +14,13 @@ const mockImages = mockUrls.map((url, index) => {
   };
 });
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <main className="">
       <div className="flex flex-wrap gap-4">
-        {[...mockImages, ...mockImages, ...mockImages].map((image) => {
+        {[...mockImages, ...mockImages, ...mockImages].map((image, index) => {
           return (
-            <div key={image.id} className="w-48">
+            <div key={image.id + "-" + index} className="w-48">
               <img src={image.url} />
             </div>
           );
